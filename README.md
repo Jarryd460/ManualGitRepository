@@ -68,8 +68,14 @@
 	* echo ref: refs/heads/master > .git/HEAD
 	* echo git is awesome | git hash-object --stdin -w
 	* git cat-file -t {hash}
+		* type of object (blob, tree, commit, tag)
 	* git cat-file -p {hash}
+		* contents of object
+	* git cat-file -s {hash}
+		* size of contents in object
 	* git update-index -add --cacheinfo 100644 {blob-hash} my_file.txt
+		* -add: adds the file to the staging area
+		* --cacheinfo: indicates that the file being added isn't in the working directory but in the object database
 	* git write-tree
 	* git commit-tree {tree-hash} -m "Commit message"
 	* git ls-files -s (shows the files that are currently staged in the index file of Git)
@@ -77,11 +83,22 @@
 		* Example: 100644 blob {blob-hash} file.txt
 		* Example: 040000 tree {tree-hash} directory
 	* git read-tree {tree-hash} (reads the tree into the index file)
+		* adding "--prefex={directory-name}" adds the specified tree as a subtree to the existing tree in the index file
 		* git checkout-index -a (checks out what is specified in the index into the working directory)
 			* It does not delete any files as far as I can tell but only adds file which have been specified in the index file
+	* git cat-file -p master^{tree} (gets the contents of the tree that pointed to by the last commit on the master branch)
+		* On CMD: git cat-file -p master^^{tree}
+		* On Powershell: git cat-file -p 'master^{tree}'
+	* git update-ref refs/heads/test {commit-hash}
+		* Updates the branch to point to the specified commit hash
+	* git symbolic-ref HEAD refs/heads/master
+		* Changes the branch we should point to (have checked out)
+	* git gc
+		* Runs the garbage collector to clean dangling objects and to store objects more efficiently by packing them 
 	
 
 ### References:
 * https://www.freecodecamp.org/news/git-internals-objects-branches-create-repo/amp/
 * https://indepth.dev/posts/1168/becoming-a-git-pro-part-1-internal-git-architecture
+* https://git-scm.com/docs/git#_git_commands
 * https://medium.com/swlh/understanding-git-under-the-hood-b1aeae1d02f5
