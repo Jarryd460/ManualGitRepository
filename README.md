@@ -70,9 +70,18 @@
 	* git cat-file -t {hash}
 	* git cat-file -p {hash}
 	* git update-index -add --cacheinfo 100644 {blob-hash} my_file.txt
-	* git wrtie-tree
+	* git write-tree
 	* git commit-tree {tree-hash} -m "Commit message"
+	* git ls-files -s (shows the files that are currently staged in the index file of Git)
+	* git mktree (makes a tree from the specified blobs/trees)
+		* Example: 100644 blob {blob-hash} file.txt
+		* Example: 040000 tree {tree-hash} directory
+	* git read-tree {tree-hash} (reads the tree into the index file)
+		* git checkout-index -a (checks out what is specified in the index into the working directory)
+			* It does not delete any files as far as I can tell but only adds file which have been specified in the index file
 	
 
 ### References:
 * https://www.freecodecamp.org/news/git-internals-objects-branches-create-repo/amp/
+* https://indepth.dev/posts/1168/becoming-a-git-pro-part-1-internal-git-architecture
+* https://medium.com/swlh/understanding-git-under-the-hood-b1aeae1d02f5
