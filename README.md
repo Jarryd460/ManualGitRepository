@@ -95,7 +95,12 @@
 		* Changes the branch we should point to (have checked out)
 	* git gc
 		* Runs the garbage collector to clean dangling objects and to store objects more efficiently by packing them 
-	
+        * git reflog
+	        * Returns a log of all commits HEAD has pointed to everytime it was changed
+        * git log -g 
+                * Returns a more detailed view of git reblog
+        * git fsck --full
+                * Returns a list of dangling objects including blobs, trees and commits
 
 ### References:
 * https://www.freecodecamp.org/news/git-internals-objects-branches-create-repo/amp/
